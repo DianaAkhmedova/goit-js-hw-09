@@ -11,19 +11,24 @@ let intervalId = null;
 refs.stopButton.setAttribute('disabled', true);
 
 const changeColor = () => {
-  refs.startButton.setAttribute('disabled', true);
-  refs.stopButton.removeAttribute('disabled');
+  if (!intervalId) {
+    refs.startButton.setAttribute('disabled', true);
+    refs.stopButton.removeAttribute('disabled');
 
-  intervalId = setInterval(() => {
-    refs.body.style.backgroundColor = getRandomHexColor();
-  }, 1000);
+    intervalId = setInterval(() => {
+      refs.body.style.backgroundColor = getRandomHexColor();
+    }, 1000);
+  }
 };
 
 const stopChangeColor = () => {
-  refs.startButton.removeAttribute('disabled');
-  refs.stopButton.setAttribute('disabled', true);
+  if (intervalId) {
+    refs.startButton.removeAttribute('disabled');
+    refs.stopButton.setAttribute('disabled', true);
 
-  clearInterval(intervalId);
+    clearInterval(intervalId);
+    intervalId = null;
+  }
 };
 
 refs.startButton.addEventListener('click', changeColor);
