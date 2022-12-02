@@ -7,7 +7,7 @@ const refs = {
   startButton: document.querySelector('[data-start]'),
   stopButton: document.querySelector('[data-stop]'),
 };
-
+let intervalId = null;
 refs.stopButton.setAttribute('disabled', true);
 
 const changeColor = () => {
