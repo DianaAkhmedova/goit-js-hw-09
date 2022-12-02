@@ -1,6 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import confetti from 'canvas-confetti';
 
 const refs = {
   datetimePicker: document.querySelector('#datetime-picker'),
@@ -56,6 +57,11 @@ const countdown = {
   },
   stop(intervalId) {
     clearInterval(intervalId);
+    confetti({
+      particleCount: 300,
+      spread: 90,
+      origin: { y: 0.6 },
+    });
   },
 };
 
